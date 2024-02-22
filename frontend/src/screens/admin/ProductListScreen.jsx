@@ -3,7 +3,7 @@ import {
   useGetProductsQuery,
   useCreateProductMutation,
 } from "../../slices/productsApiSlice";
-import { FaTimes, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import { Button, Col, Row, Table } from "react-bootstrap";
