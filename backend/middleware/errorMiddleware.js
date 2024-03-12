@@ -8,11 +8,6 @@ const errorHandler = (err, req, res, next) => {
   let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   let message = err.message;
 
-  //Check for Mongo bad object
-  if (err.name === "CastError" && err.kind === "ObjectId") {
-    message = "Resource Not Found";
-    statusCode = 404;
-  }
   res.status(statusCode).json({
     message,
     stack: process.env.NODE.ENV === "production" ? "🥞" : err.stack,
