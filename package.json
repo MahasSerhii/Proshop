@@ -1,7 +1,7 @@
 {
-  "name": "proshop",
+  "name": "gadgetshop",
   "version": "1.0.0",
-  "description": "eshop",
+  "description": "gadgetshop",
   "type": "module",
   "main": "server.js",
   "scripts": {
