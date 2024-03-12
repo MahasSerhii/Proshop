@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
   },
 });
 function fileFilter(req, file, cb) {
-  const filetypes = /jpe?g|jpeg|png/;
+  const filetypes = /jpe?g|png|webp/;
   const mimetypes = /image\/jpe?g|image\/png|image\/webp/;
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   const mimetype = mimetypes.test(file.mimetype);
@@ -37,11 +37,12 @@ router.post("/", (req, res) => {
   uploadSingleImage(req, res, function (err) {
     if (err) {
       res.status(400).send({ message: err.message });
+    } else {
+      res.status(200).send({
+        message: "Image uploaded successfully",
+        image: `/${req.file.path}`,
+      });
     }
-    res.status(200).send({
-      message: "Image uploaded successfully",
-      image: `/${req.file.path}`,
-    });
   });
 });
 
