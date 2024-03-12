@@ -105,7 +105,7 @@ const OrderScreen = () => {
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Message variant="danger"> {error} </Message>
+    <Message variant="danger"> {error?.data?.message || error.error} </Message>
   ) : (
     <div>
       <h1>Order {order._id} </h1>
