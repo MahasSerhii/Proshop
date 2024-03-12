@@ -5,6 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
+import { resetCart } from "../slices/cartSlice";
 import { logout } from "../slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -20,6 +21,7 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
+      dispatch(resetCart());
       navigate("/login");
     } catch (error) {
       console.log("Logout error message", error);
