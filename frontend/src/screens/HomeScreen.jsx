@@ -3,13 +3,28 @@ import { Row, Col } from "react-bootstrap";
 import { Product } from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Loader from "../components/Loader";
+import Meta from "../components/Meta";
 import Message from "../components/Message";
+import { Link, useParams } from "react-router-dom";
+import Paginate from "../components/Paginate";
+import ProductCarousel from "../components/ProductCarousel";
 
 export const HomeScreen = () => {
-  const { data: products, isLoading, error } = useGetProductsQuery();
+  const { pageNumber, keyword } = useParams();
+  const { data, isLoading, error } = useGetProductsQuery({
+    keyword,
+    pageNumber,
+  });
 
   return (
     <>
+      {keyword ? (
+        <Link to="/" className="btn btn-light mb-4">
+          Go Back
+        </Link>
+      ) : (
+        <ProductCarousel />
+      )}
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -18,14 +33,21 @@ export const HomeScreen = () => {
         </Message>
       ) : (
         <>
+          <Meta />
           <h1>Latest Products</h1>
           <Row>
-            {products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+            {data.products.map((product, index) => (
+              <Col key={index} sm={12} md={6} lg={4} xl={3}>
                 <Product product={product} />
               </Col>
             ))}
           </Row>
+          <Paginate
+            pages={data.pages}
+            page={data.page}
+            isAdmin={false}
+            keyword={keyword ? keyword : ""}
+          />
         </>
       )}
     </>
