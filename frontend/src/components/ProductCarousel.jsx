@@ -6,7 +6,7 @@ import { Carousel, Col, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ProductCarousel = () => {
-  const { data: products, error } = useGetTopProductsQuery();
+  const { data: products, isLoading, error } = useGetTopProductsQuery();
 
   return isLoading ? (
     <Loader />
