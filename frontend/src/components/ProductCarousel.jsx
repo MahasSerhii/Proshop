@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 const ProductCarousel = () => {
   const { data: products, error } = useGetTopProductsQuery();
 
-  return error ? (
+  return isLoading ? (
+    <Loader />
+  ) : error ? (
     <Message variant="danger">{error} </Message>
   ) : (
     <Carousel pause="hover" className="bg-primary mb-4">
