@@ -44,7 +44,7 @@ const Header = () => {
               <SearchBox />
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <FaShoppingCart />
+                  <FaShoppingCart style={{ paddingRight: 5 }} />
                   Cart
                   {cartItems.length > 0 ? (
                     <Badge pill bg="success" style={{ marginLeft: 5 }}>
